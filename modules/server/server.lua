@@ -558,7 +558,7 @@ AddEventHandler("onResourceStart", function(resourceName)
   ]])
     print("^5=============================================^0")
     print("(^4ZayssScanner^0): Commandes disponibles: ^6scan-backdoor^0 - Lance une analyse dans tous les repertoires du serveur.")
-    print("(^4ZayssScanner^0): ZayssScanner By ^5Zayss^0 : https://github.com/zayss212/Zayss-Scanner---Backdoor-FiveM")
+    print("(^4ZayssScanner^0): ZayssScanner By ^5Zayss^0 : https://github.com/zayss212/Zayss-Scanner-AntiBackdoorFiveM")
     print("(^4ZayssScanner^0): N'hésitez pas à rejoindre mon discord : ^5https://discord.gg/RPsJneRd9V^0")
   end
 
@@ -581,14 +581,14 @@ if ZayssScanner.AutoScan.Enabled then
 end
 
 RegisterCommand("scan-backdoor", function()
-    print([[
+    print([[^5
         __________                            _________
         \____    /____  ___.__. ______ ______/   _____/ ____ _____    ____
           /     /\__  \<   |  |/  ___//  ___/\_____  \_/ ___\\__  \  /    \
          /     /_ / __ \\___  |\___ \ \___ \ /        \  \___ / __ \|   |  \
         /_______ (____  / ____/____  >____  >_______  /\___  >____  /___|  /
                 \/    \/\/         \/     \/        \/     \/     \/     \/
-]])
+^0]])
   print("^5=============================================^0")
   Wait(1000)
   print("(^4ZayssScanner^0): ^0Recherche de ^6Cipher^0 backdoors...")
