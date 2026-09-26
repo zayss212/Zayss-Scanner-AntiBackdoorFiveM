@@ -1,10 +1,6 @@
 ZayssScanner = {}
 
-ZayssScanner.SendZayssDiscordLogs = true
 ZayssScanner.StopServer = false
-
-ZayssScanner.DiscordWebhook = "Votre webhook"
-
 ZayssScanner.IgnoreResources = {}
 
 ZayssScanner.ScanOptions = {
