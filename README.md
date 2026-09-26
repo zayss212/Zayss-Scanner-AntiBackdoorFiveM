@@ -1,97 +1,108 @@
-# 🛡️ ZayssScanner - Backdoor Detection for FiveM
+# ZayssScanner
 
-**Un scanner de backdoors professionnel pour sécuriser votre serveur FiveM**
+Scanner de backdoors pour serveurs FiveM.  
+Détection multi-signatures (Cipher, Ketamin), analyse d'obfuscation avec scoring, monitoring en temps réel avec alertes Discord.
 
-[📥 Installation](#-installation) • [⚙️ Configuration](#️-configuration) • [🎯 Utilisation](#-utilisation) • [💬 Support](#-support)
+> [!WARNING]
+> **Outil d'audit, non un antivirus infaillible.**  
+> Des faux positifs sont possibles — vérifiez toujours manuellement les détections. Aucun scanner ne garantit une couverture totale face aux variantes inconnues.
 
 ---
 
-## 📌 Contexte
+## Sommaire
+
+- [Contexte](#contexte)
+- [Fonctionnalités](#fonctionnalités)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Utilisation](#utilisation)
+- [Détections](#détections)
+- [Niveaux de menace](#niveaux-de-menace)
+- [Recommandations](#recommandations)
+- [Support](#support)
+- [Statistiques](#statistiques)
+- [Licence](#licence)
+
+---
+
+## Contexte
 
 Depuis l'explosion des ressources **unlock** et **fxap**, l'écosystème FiveM est devenu un terrain fertile pour les backdoors. Des scripts infectés circulent massivement à travers des ressources "unlockées", revendues ou leakées.
 
-### 🚨 Les conséquences
+Conséquences observées sur des milliers de serveurs :
 
-Des milliers de serveurs ont été victimes :
-- **Exécution de code à distance** : Contrôle total du serveur
-- **Vol de données** : Base de données, tokens, webhooks Discord
-- **Injection de scripts** : Installation automatique de malwares
-- **Sabotage** : Destruction de données, bannissements massifs
+| Vecteur | Impact |
+|---|---|
+| Exécution de code à distance | Contrôle total du serveur |
+| Vol de données | Base de données, tokens, webhooks Discord |
+| Injection de scripts | Installation automatique de malwares |
+| Sabotage | Destruction de données, bannissements massifs |
 
-**Ce problème est toujours d'actualité.** Ce projet est né d'un besoin critique : disposer d'un outil fiable pour analyser ses ressources avant de les utiliser en production.
-
----
-
-## 🎯 Objectif
-
-ZayssScanner n'est **pas un antivirus magique**, mais un **outil d'audit de sécurité** pour :
-
-- ✅ Identifier rapidement les fichiers suspects
-- ✅ Détecter les signatures connues de backdoors (Cipher, Ketamin, etc.)
-- ✅ Repérer les patterns de code dangereux (XOR, Unicode, Base64)
-- ✅ Analyser le niveau d'obfuscation avec un système de scoring
-- ✅ Monitorer en temps réel avec alertes Discord
+ZayssScanner est né d'un besoin critique : disposer d'un outil fiable pour analyser ses ressources avant de les utiliser en production.
 
 ---
 
-## ⚙️ Fonctionnalités
+## Fonctionnalités
 
-### 🔎 Détection
-- **Multi-signatures** : Cipher, Ketamin et variantes
-- **Analyse d'obfuscation** : XOR, Unicode, Base64, fromCharCode, eval()
-- **Scoring intelligent** : Niveau de menace (Low → CRITICAL)
-- **Scan profond** : Server/Client scripts, UI pages, HTML, JS
-
-### 🤖 Automatisation
-- **Auto-scan** : Programmable avec intervalle personnalisable
-- **Whitelist** : Exclusion de ressources de confiance
-- **Logs** : Historique complet dans `scan_logs/`
-- **Discord** : Notifications instantanées avec détails
+| Catégorie | Fonctionnalité |
+|---|---|
+| **Signatures** | Cipher, Ketamin et variantes personnalisées |
+| **Obfuscation** | XOR, Unicode, Base64, fromCharCode, eval() |
+| **Scoring** | Niveau de menace gradué (Low → CRITICAL) |
+| **Couverture** | Server scripts, client scripts, UI pages, HTML, JS |
+| **Automatisation** | Auto-scan à intervalle configurable |
+| **Whitelist** | Exclusion de ressources de confiance |
+| **Logs** | Historique complet dans `scan_logs/` |
+| **Alertes** | Notifications Discord instantanées avec détails |
 
 ---
 
-## 📥 Installation
+## Installation
 
-### Git Clone
+### Git clone
+
 ```bash
 cd resources
 git clone https://github.com/zayss212/Zayss-Scanner---Backdoor-FiveM.git [zayss_scanner]
 ```
 
 ### Téléchargement manuel
+
 1. Téléchargez la [dernière release](https://github.com/zayss212/Zayss-Scanner---Backdoor-FiveM)
 2. Extrayez dans `resources/[zayss_scanner]`
 3. Renommez le dossier en `zayss_scanner`
 
-### Configuration server.cfg
-```bash
+### server.cfg
+
+```
 ensure zayss_scanner
 ```
 
-**⚠️ IMPORTANT** : Placez cette ligne **APRÈS** toutes vos autres ressources.
+> [!WARNING]
+> Placez cette ligne **après** toutes vos autres ressources.
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
-Éditez le fichier `config.lua` :
+Éditez `config.lua` :
 
 ```lua
 ZayssScanner = {}
 
--- 🔔 Discord
+-- Discord
 ZayssScanner.SendZayssDiscordLogs = true
 ZayssScanner.DiscordWebhook = "VOTRE_WEBHOOK_ICI"
 
--- 🚨 Sécurité
+-- Sécurité
 ZayssScanner.StopServer = false  -- Arrête le serveur si backdoor détectée
 
--- 📝 Whitelist
+-- Whitelist
 ZayssScanner.IgnoreResources = {
     -- Ajoutez vos ressources de confiance ici
 }
 
--- 🎯 Options de scan
+-- Options de scan
 ZayssScanner.ScanOptions = {
     ScanServerScripts = true,
     ScanClientScripts = true,
@@ -101,13 +112,13 @@ ZayssScanner.ScanOptions = {
     DeepScan = true
 }
 
--- ⏰ Auto-scan
+-- Auto-scan
 ZayssScanner.AutoScan = {
-    Enabled = false,     -- Active le scan automatique
-    Interval = 3600000,  -- Intervalle (1h par défaut)
+    Enabled = false,
+    Interval = 3600000,  -- 1 heure par défaut
 }
 
--- 🔬 Détection avancée
+-- Détection avancée
 ZayssScanner.AdvancedDetection = {
     DetectObfuscation = true,
     DetectXOREncryption = true,
@@ -123,14 +134,18 @@ return ZayssScanner
 
 ---
 
-## 🎯 Utilisation
+## Utilisation
 
 ### Commande
-```bash
-scan-backdoor    # Lance un scan complet
+
+```
+scan-backdoor
 ```
 
+Lance un scan complet de toutes les ressources actives.
+
 ### Exemple de sortie
+
 ```
 [RESSOURCE INFECTÉE DÉTECTÉE] - esx_doorlock
   └─ Fichier: server/main.lua
@@ -138,81 +153,87 @@ scan-backdoor    # Lance un scan complet
   └─ Niveau de menace: CRITICAL (Score: 75)
 
 ========================================
-Total Scanné: 156 
-Potentiellement infectés: 3 
+Total Scanné: 156
+Potentiellement infectés: 3
 Durée du scan: 2.45s
 ========================================
 ```
 
+### Procédure après scan
+
+1. Lancer le serveur et exécuter `scan-backdoor`
+2. Arrêter le serveur — supprimer les fichiers détectés (**vérifier manuellement avant toute suppression**)
+3. Vider le cache du serveur et supprimer dans `citizen/system_resources` les ressources suspectes (souvent nommées `sys`, `mod`, etc.)
+4. Relancer le serveur et refaire un scan pour confirmer
+
 ---
 
-## 🔍 Types de backdoors détectés
+## Détections
 
-### Backdoors par signature
-- **Cipher** : cipher-panel, cfx.re, eszjqvpjhiou, helperServer
-- **Ketamin** : ketamin.cc
-- **Custom** : Patterns personnalisés
+### Signatures connues
+
+| Famille | Indicateurs |
+|---|---|
+| **Cipher** | cipher-panel, cfx.re, eszjqvpjhiou, helperServer |
+| **Ketamin** | ketamin.cc |
+| **Custom** | Patterns personnalisés configurables |
 
 ### Techniques d'obfuscation
-- **XOR Encryption** : `charCodeAt(0)^` (+25 pts)
-- **fromCharCode** : Encodage de caractères (+15 pts)
-- **Unicode sequences** : `\uXXXX` massivement (+20 pts)
-- **Base64** : `atob()` (+15 pts)
-- **Remote execution** : HTTP + eval (+30 pts)
-- **eval()** : Exécution dynamique (+10 pts)
 
-### Niveaux de menace
-- **Low** (0-15) : Suspect mais potentiellement légitime
-- **Medium** (16-30) : Attention requise
-- **High** (31-50) : Très suspect, vérification manuelle
-- **CRITICAL** (51+) : Backdoor quasi-certaine
+| Technique | Pattern | Score |
+|---|---|---|
+| XOR Encryption | `charCodeAt(0)^` | +25 pts |
+| fromCharCode | Encodage de caractères | +15 pts |
+| Unicode sequences | `\uXXXX` massifs | +20 pts |
+| Base64 | `atob()` | +15 pts |
+| Remote execution | HTTP + eval | +30 pts |
+| eval() | Exécution dynamique | +10 pts |
 
 ---
 
-## ⚠️ Avertissements
+## Niveaux de menace
 
-- ⚠️ **Faux positifs possibles** : Vérifiez toujours manuellement
-- ⚠️ **Évolution des backdoors** : Nouvelles variantes peuvent échapper
-- ⚠️ **Pas de garantie absolue** : Aucun scanner n'est infaillible
-
-### Recommandations
-- ✅ Vérifier manuellement les détections
-- ✅ Télécharger depuis des sources fiables
-- ✅ Maintenir le scanner à jour
-- ✅ Faire des backups réguliers
-- ✅ Tester sur un serveur de développement
-
-### Conseil de Debuts
-- 🔧 Lancer votre server en fesant un scan
-- 🔧 Stopper votre server et supprimer chaque backdoors detecter **(Verifier bien que vous ne supprimer pas n'importe quoi)**
-- 🔧 Supprimer le cache de votre server et dans vos artifacts fivem **citizen/system_resources** supprimer la resources suspects (souvent nommer: sys, mod, ...)
-- 🔧 Vous pouvez ensuite relancer votre server et refaire un scan
+| Niveau | Score | Interprétation |
+|---|---|---|
+| **Low** | 0 – 15 | Suspect mais potentiellement légitime |
+| **Medium** | 16 – 30 | Attention requise |
+| **High** | 31 – 50 | Très suspect — vérification manuelle obligatoire |
+| **CRITICAL** | 51+ | Backdoor quasi-certaine |
 
 ---
 
-## 💬 Support
+## Recommandations
+
+- Vérifier manuellement chaque détection avant suppression
+- Télécharger les ressources depuis des sources fiables uniquement
+- Maintenir le scanner à jour pour couvrir les nouvelles signatures
+- Effectuer des backups réguliers avant tout scan en production
+- Tester d'abord sur un serveur de développement
+
+> [!NOTE]
+> Des faux positifs surviennent sur les ressources légitimement obfusquées. Le score est un indicateur, pas un verdict automatique.
+
+---
+
+## Support
 
 - **GitHub** : [github.com/zayss212/Zayss-Scanner](https://github.com/zayss212/Zayss-Scanner---Backdoor-FiveM)
 - **Discord** : [discord.gg/RPsJneRd9V](https://discord.gg/RPsJneRd9V)
-- **Issues** : [Signaler un bug](https://github.com/zayss212/Zayss-Scanner/issues)
+- **Issues** : [Signaler un bug](https://github.com/zayss212/Zayss-Scanner---Backdoor-FiveM/issues)
 
 ---
 
-## 📊 Statistiques
+## Statistiques
 
-- 🔍 **14+ signatures** de backdoors
-- 🧬 **8 techniques** d'obfuscation détectées
-- ⚡ **~2-5 secondes** pour 150 ressources
-- 🎯 **~95%** de taux de détection
-
----
-
-## 📄 Licence
-
-MIT License - Copyright (c) 2025 Zayss
+| Métrique | Valeur |
+|---|---|
+| Signatures de backdoors | 14+ |
+| Techniques d'obfuscation couvertes | 8 |
+| Temps de scan (150 ressources) | ~2 – 5 secondes |
+| Taux de détection estimé | ~95 % |
 
 ---
 
-**Made with ❤️ by [Zayss](https://github.com/zayss212)**
+## Licence
 
-⭐ N'oubliez pas de mettre une étoile si ce projet vous aide !
+MIT License — Copyright (c) 2025 Zayss
