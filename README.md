@@ -1,7 +1,7 @@
 # ZayssScanner
 
 Scanner de backdoors pour serveurs FiveM.  
-Détection multi-signatures (Cipher, Ketamin), analyse d'obfuscation avec scoring, monitoring en temps réel avec alertes Discord.
+Détection multi-signatures (Cipher, Blum, ...), analyse d'obfuscation avec scoring, monitoring en temps réel avec alertes Discord.
 
 > [!WARNING]
 > **Outil d'audit, non un antivirus infaillible.**  
