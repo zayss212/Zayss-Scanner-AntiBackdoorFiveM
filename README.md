@@ -46,14 +46,13 @@ ZayssScanner est né d'un besoin critique : disposer d'un outil fiable pour anal
 
 | Catégorie | Fonctionnalité |
 |---|---|
-| **Signatures** | Cipher, Ketamin et variantes personnalisées |
+| **Signatures** | Cipher, Blum et variantes personnalisées |
 | **Obfuscation** | XOR, Unicode, Base64, fromCharCode, eval() |
 | **Scoring** | Niveau de menace gradué (Low → CRITICAL) |
 | **Couverture** | Server scripts, client scripts, UI pages, HTML, JS |
 | **Automatisation** | Auto-scan à intervalle configurable |
 | **Whitelist** | Exclusion de ressources de confiance |
 | **Logs** | Historique complet dans `scan_logs/` |
-| **Alertes** | Notifications Discord instantanées avec détails |
 
 ---
 
@@ -63,12 +62,12 @@ ZayssScanner est né d'un besoin critique : disposer d'un outil fiable pour anal
 
 ```bash
 cd resources
-git clone https://github.com/zayss212/Zayss-Scanner---Backdoor-FiveM.git [zayss_scanner]
+git clone https://github.com/zayss212/Zayss-Scanner-AntiBackdoorFiveM.git [zayss_scanner]
 ```
 
 ### Téléchargement manuel
 
-1. Téléchargez la [dernière release](https://github.com/zayss212/Zayss-Scanner---Backdoor-FiveM)
+1. Téléchargez la [dernière release](https://github.com/zayss212/Zayss-Scanner-AntiBackdoorFiveM)
 2. Extrayez dans `resources/[zayss_scanner]`
 3. Renommez le dossier en `zayss_scanner`
 
@@ -89,10 +88,6 @@ ensure zayss_scanner
 
 ```lua
 ZayssScanner = {}
-
--- Discord
-ZayssScanner.SendZayssDiscordLogs = true
-ZayssScanner.DiscordWebhook = "VOTRE_WEBHOOK_ICI"
 
 -- Sécurité
 ZayssScanner.StopServer = false  -- Arrête le serveur si backdoor détectée
@@ -217,9 +212,9 @@ Durée du scan: 2.45s
 
 ## Support
 
-- **GitHub** : [github.com/zayss212/Zayss-Scanner](https://github.com/zayss212/Zayss-Scanner---Backdoor-FiveM)
+- **GitHub** : [github.com/zayss212/Zayss-Scanner](https://github.com/zayss212/Zayss-Scanner-AntiBackdoorFiveM)
 - **Discord** : [discord.gg/RPsJneRd9V](https://discord.gg/RPsJneRd9V)
-- **Issues** : [Signaler un bug](https://github.com/zayss212/Zayss-Scanner---Backdoor-FiveM/issues)
+- **Issues** : [Signaler un bug](https://github.com/zayss212/Zayss-Scanner-AntiBackdoorFiveM/issues)
 
 ---
 
