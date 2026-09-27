@@ -559,7 +559,7 @@ AddEventHandler("onResourceStart", function(resourceName)
     print("^5=============================================^0")
     print("(^4ZayssScanner^0): Commandes disponibles: ^6scan-backdoor^0 - Lance une analyse dans tous les repertoires du serveur.")
     print("(^4ZayssScanner^0): ZayssScanner By ^5Zayss^0 : https://github.com/zayss212/Zayss-Scanner-AntiBackdoorFiveM")
-    print("(^4ZayssScanner^0): N'hésitez pas à rejoindre mon discord : ^5https://discord.gg/RPsJneRd9V^0")
+    print("(^4ZayssScanner^0): N'hésitez pas à rejoindre mon discord : ^5https://discord.gg/MsMw2NQ7Vj^0")
   end
 
   if ZayssScanner.AutoScan.Enabled  and resourceName ~= GetCurrentResourceName() then
