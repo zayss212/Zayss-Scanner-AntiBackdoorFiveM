@@ -213,7 +213,7 @@ Durée du scan: 2.45s
 ## Support
 
 - **GitHub** : [github.com/zayss212/Zayss-Scanner](https://github.com/zayss212/Zayss-Scanner-AntiBackdoorFiveM)
-- **Discord** : [discord.gg/RPsJneRd9V](https://discord.gg/RPsJneRd9V)
+- **Discord** : [discord.gg/MsMw2NQ7Vj](https://discord.gg/MsMw2NQ7Vj)
 - **Issues** : [Signaler un bug](https://github.com/zayss212/Zayss-Scanner-AntiBackdoorFiveM/issues)
 
 ---
